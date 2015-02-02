@@ -1,0 +1,11 @@
+[package]
+
+name = "rust_proj"
+version = "0.0.1"
+authors = [
+    "Justin Oblak <me@justinoblak.com>"
+]
+
+[[bin]]
+
+name = "rust_proj"
