@@ -136,6 +136,36 @@ fn main() {
     // you can coerce String to &str with an &:
     let string1 = &s;
     println!("converted: {}", string1);
+
+    // arrays are immutable by default, and fixed size
+    let arr = [1, 2, 3];
+    let mut arrr = [1, 2, 3];
+    arrr[1] = 3;
+    // arrays can also be initialized via [T; N] (type, quantity)
+    let arr2 = [0; 20]; // array of 20 0s
+
+    // arrays are iterated over via .iter() (length via .len())
+    for e in arr.iter() {
+        println!("{}", e);
+    }
+
+    // arrays are accessed in a familiar fashion:
+    println!("{}, {}", arrr[1], arr2[10]);
+
+    // vectors are dynamic arrays that can grow, created via macro:
+    let v = vec![1, 2, 3];
+    let mut nums = v;
+    nums.push(4); // add to vectors via push
+    println!("the number of vals in vec is now {}", nums.len()); // length via .len()
+
+    // vectors/arrays also allow slicing. allows a safe access to a portion of an array without
+    // coping
+    let a = [0, 1, 2, 3, 4];
+    let middle = &a[1..4]; // slice of a
+    for e in middle.iter() {
+        println!("{}", e);
+    }
+    // you can also slice arrays, strings, Strings. Slices have type &[T]
 }
 
 // fn that takes args:
