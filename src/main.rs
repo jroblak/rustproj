@@ -125,6 +125,17 @@ fn main() {
         if x % 2 == 0 { continue; }
         println!("{}", x);
     }
+
+    // rust has &str (slice) and String strings
+    // &str is statically allocated, String is in the heap
+    let string = "Hello there";
+    let mut s = "Hello".to_string();
+    // we can append to Strings
+    s.push_str(", world");
+    println!("&str: {}  String: {}", string, s);
+    // you can coerce String to &str with an &:
+    let string1 = &s;
+    println!("converted: {}", string1);
 }
 
 // fn that takes args:
