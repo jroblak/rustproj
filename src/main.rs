@@ -69,6 +69,62 @@ fn main() {
     // get the value from a destructuring let
     let Inches(int_length) = length;
     println!("length is {} inches", int_length);
+
+    // enums!
+    let ordering = cmp(x, y);
+    if ordering == Ordering::Less {
+        println!("less");
+    } else if ordering == Ordering::Greater {
+        println!("more");
+    } else {
+        println!("eq");
+    }
+
+    // enums can also contains values
+    enum StringResult {
+        StringOK(String),
+        ErrorReason(String)
+    }
+
+    let rest = StringResult::ErrorReason("not ok".to_string());
+    let res = StringResult::StringOK("this is ok!".to_string());
+    let inner = match res {
+        StringResult::StringOK(x) => x,
+        StringResult::ErrorReason(y) => y
+    };
+    let inner2 = match rest {
+        StringResult::StringOK(x) => x,
+        StringResult::ErrorReason(y) => y
+    };
+    println!("{}", inner);
+    println!("{}", inner2);
+
+    // for loops too!
+    for x in 0..10 {
+        println!("{}", x);
+    }
+    
+    // and while, oh my!
+    let mut done = false;
+    let mut cnt = 0;
+    while !done {
+        cnt += 1;
+        if cnt == 3 {
+            done = true;
+        }
+    }
+
+    // can also handle this with break:
+    while done {
+        cnt -= 1;
+        if cnt == 0 { break; }
+    }
+
+    // continue is there too, skips to next iteration:
+    for x in 0u32..10 {
+        if x % 2 == 0 { continue; }
+        println!("{}", x);
+    }
 }
 
 // fn that takes args:
@@ -113,12 +169,6 @@ struct Color(i32, i32, i32);
 struct Inches(i32);
 
 // rust also has Enums
-enum FooBar {
-    Foo,
-    Bar,
-    FooBar
-}
-
 fn cmp(a: i32, b: i32) -> Ordering {
     if a < b { Ordering::Less }
     else if a > b { Ordering::Greater }
