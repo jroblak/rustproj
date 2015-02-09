@@ -1,5 +1,7 @@
 // to import things, use 'use', double colon (::) indicates namespacing:
 use std::cmp::Ordering;
+use std::old_io;
+// use std::old_io::stdin -> considered bad form to import individual fns
 
 // simplest function def; no args or return types
 fn main() {
@@ -166,6 +168,21 @@ fn main() {
         println!("{}", e);
     }
     // you can also slice arrays, strings, Strings. Slices have type &[T]
+
+    // rust allows you to 'pipe' functions
+    // readline() returns an IoResult<T> which could be failure
+    // the ok().expect() pattern checks for and handles the potential
+    // failure
+    let input = old_io::stdin().read_line().ok().expect("Failed to read line");
+    println!("{}", input);
+
+    // rust is flexible on whitespace:
+    let input2 = old_io::stdin() 
+                    .read_line() // IoResult<T>
+                    .ok() // Option<String>
+                    .expect("Failed to get input"); // String
+
+    println!("input2: {}", input2);
 }
 
 // fn that takes args:
